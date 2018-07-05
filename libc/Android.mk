@@ -496,6 +496,7 @@ libc_common_cflags := \
     -I$(LOCAL_PATH)/private \
     -DPOSIX_MISTAKE \
     -DLOG_ON_HEAP_ERROR \
+    -O3 \
     -Wall -Wextra
 
 ifeq ($(strip $(DEBUG_BIONIC_LIBC)),true)
@@ -692,7 +693,7 @@ WITH_MALLOC_CHECK_LIBC_A := $(strip $(WITH_MALLOC_CHECK_LIBC_A))
 include $(CLEAR_VARS)
 
 LOCAL_SRC_FILES := bionic/__stack_chk_fail.cpp
-LOCAL_CFLAGS := $(libc_common_cflags) -fno-stack-protector -Werror
+LOCAL_CFLAGS := $(libc_common_cflags) -fno-stack-protector -O3 -Werror
 LOCAL_C_INCLUDES := $(libc_common_c_includes)
 LOCAL_MODULE := libbionic_ssp
 LOCAL_ADDITIONAL_DEPENDENCIES := $(LOCAL_PATH)/Android.mk
@@ -714,7 +715,8 @@ LOCAL_CFLAGS := \
     -DSTD_INSPIRED=1 \
     -DTZDIR=\"/system/usr/share/zoneinfo\" \
     -DTM_GMTOFF=tm_gmtoff \
-    -DUSG_COMPAT=1
+    -DUSG_COMPAT=1 \
+    -O3
 LOCAL_C_INCLUDES := $(libc_common_c_includes)
 LOCAL_MODULE := libc_tzcode
 LOCAL_ADDITIONAL_DEPENDENCIES := $(LOCAL_PATH)/Android.mk
@@ -760,7 +762,8 @@ LOCAL_CFLAGS := \
     $(libc_common_cflags) \
     -I$(LOCAL_PATH)/upstream-netbsd \
     -I$(LOCAL_PATH)/upstream-netbsd/libc/include \
-    -include upstream-netbsd/netbsd-compat.h
+    -include upstream-netbsd/netbsd-compat.h \
+    -O3
 LOCAL_C_INCLUDES := $(libc_common_c_includes)
 LOCAL_MODULE := libc_netbsd
 LOCAL_ADDITIONAL_DEPENDENCIES := $(LOCAL_PATH)/Android.mk
@@ -832,7 +835,8 @@ LOCAL_SRC_FILES := \
 LOCAL_C_INCLUDES := $(libc_common_c_includes)
 LOCAL_CFLAGS := $(libc_common_cflags) \
                 -DLIBC_STATIC \
-                -std=gnu99
+                -std=gnu99 \
+                -O3
 
 LOCAL_MODULE := libc_nomalloc
 LOCAL_ADDITIONAL_DEPENDENCIES := $(LOCAL_PATH)/Android.mk

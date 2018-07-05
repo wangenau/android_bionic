@@ -23,6 +23,7 @@ LOCAL_LDFLAGS += -Wl,--exclude-libs=libgcc_eh.a
 endif
 
 LOCAL_SRC_FILES:= libdl.c
+LOCAL_CFLAGS := -O3
 
 LOCAL_MODULE:= libdl
 LOCAL_ADDITIONAL_DEPENDENCIES := $(LOCAL_PATH)/Android.mk
@@ -47,6 +48,7 @@ ifeq ($(BUILD_DLTEST),1)
 include $(CLEAR_VARS)
 
 LOCAL_SRC_FILES:= dltest.c
+LOCAL_CFLAGS := -O3
 
 LOCAL_MODULE:= dltest
 LOCAL_ADDITIONAL_DEPENDENCIES := $(LOCAL_PATH)/Android.mk
